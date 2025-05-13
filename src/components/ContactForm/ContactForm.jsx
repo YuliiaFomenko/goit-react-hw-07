@@ -3,7 +3,8 @@ import React, { useId } from "react";
 import { ErrorMessage, Form, Field, Formik } from "formik";
 import s from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
+
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -29,8 +30,6 @@ const ContactForm = () => {
       initialValues={{ name: "", number: "" }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
-        
         dispatch(addContact(values));
         resetForm();
       }}
